@@ -39,7 +39,7 @@ function WorkerLogin({ onLogin }) {
             <h2>Worker Login</h2>
             <input
                 type="text"
-                placeholder="Worker ID"
+                placeholder="ID"
                 value={workerId}
                 onChange={(e) => {
                     setWorkerId(e.target.value);

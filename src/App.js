@@ -4,8 +4,9 @@ import TicketDisplay from "./TicketDisplay";
 import CustomerInfo from "./CustomerInfo";
 import { useState, useEffect } from "react";
 //import { fetchTicketAndUserDetails } from "./firebase-utils"; // Import the Firebase utility function
-import { ref, get, child ,update} from 'firebase/database';
+import { ref, get, child ,update,push} from 'firebase/database';
 import { database } from './firebaseConfig';
+
 
 
 function App() {
@@ -25,7 +26,18 @@ function App() {
         } catch (error) {
             console.error("Error updating index:", error);
         }
-    };
+
+        if (currentCustomer) {
+            const feedbackRef = ref(database, `users/${currentCustomer.id}/feedback`);
+            const feedbackSnapshot = await get(feedbackRef);
+            const feedbackData = feedbackSnapshot.val();
+            const newKey = feedbackData ? Object.keys(feedbackData).length : 0;
+            const newFeedbackRef = ref(database, `users/${currentCustomer.id}/feedback/${newKey}`);
+            await update(newFeedbackRef, { workerName: workerId });
+        }
+    }
+
+
 
     const handlePrevious = () => {
         setTicketNumber((prev) => Math.max(prev - 1, 1));
