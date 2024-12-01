@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { ref, get } from "firebase/database";
 import { database } from "./firebaseConfig";
+import './App.css'; // Import the CSS file
 
-function WorkerLogin({ onLogin }) {
+function WorkerLogin({ onLogin ,onWorkerName}) {
     const [workerId, setWorkerId] = useState("");
     const [error, setError] = useState("");
 
@@ -13,15 +14,14 @@ function WorkerLogin({ onLogin }) {
         }
 
         try {
-            // Reference to workers in Firebase
             const workersRef = ref(database, "agencies/21004/workers");
             const snapshot = await get(workersRef);
 
             if (snapshot.exists()) {
                 const workers = snapshot.val();
-                // Check if the entered worker ID exists
-                if (Object.keys(workers).includes(workerId)) {
-                    onLogin(workerId); // Log in if worker ID is valid
+                if (workers[workerId]) {
+                    onWorkerName(workers[workerId].name);
+                    onLogin(workerId);
                 } else {
                     setError("Invalid Worker ID.");
                 }
@@ -35,23 +35,28 @@ function WorkerLogin({ onLogin }) {
     };
 
     return (
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
-            <h2>Worker Login</h2>
-            <input
-                type="text"
-                placeholder="ID"
-                value={workerId}
-                onChange={(e) => {
-                    setWorkerId(e.target.value);
-                    setError(""); // Clear error when typing
-                }}
-                style={{ padding: "10px", fontSize: "16px", marginBottom: "10px" }}
-            />
-            <br />
-            <button onClick={handleLogin} style={{ padding: "10px 20px", fontSize: "16px" }}>
-                Start Working
-            </button>
-            {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
+        <div className="login-container">
+            <div className="login-form">
+                <h1 className="login-title">LOGIN</h1>
+                <h2 className="worker-login">Worker Login</h2>
+                <input
+                    type="text"
+                    placeholder="  ID"
+                    value={workerId}
+                    onChange={(e) => {
+                        setWorkerId(e.target.value);
+                        setError("");
+                    }}
+                    className="login-input"
+                />
+                <button onClick={handleLogin} className="login-button">
+                    LOGIN
+                </button>
+                {error && <p className="error-text">{error}</p>}
+            </div>
+            <div className="login-image">
+                <img src="2.png" alt="Algérie Poste Logo" />
+            </div>
         </div>
     );
 }

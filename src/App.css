@@ -1,7 +1,289 @@
-App{
+:root {
+    --primary-color: #FECF16; /* Replace with your desired color */
+    --font-primary-color: #005baa;
+}
+.App{
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
-    background-color: #282c34;
+    /*font-family: 'Roboto', sans-serif;*/
+    background-image: url('../public/Background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    width:100vw;
 }
+.App h1{
+    color: #005baa;
+    font-size:90px;
+    font-weight: bolder;
+
+
+}
+body {
+
+    margin: 0;
+    padding: 0;
+    /*font-family: Arial, sans-serif;*/
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-container {
+    background-color: white;
+    display: flex;
+    height: 100vh;
+    /*justify-content: center;*/
+    align-items: center;
+    gap :15vh;
+    position: relative;
+    margin-left: 25vh;
+    /*  background: #f4f6f8; /* Light background */
+
+}
+.login-input::placeholder {
+    font-size: 30px;            /* Adjust placeholder text size */
+    color: #ffffff;             /* Optional: Placeholder text color */
+    opacity: 0.8;
+    /* Optional: Transparency for the placeholder */
+}
+
+.login-form {
+    flex: 1;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+    margin-top: -50px;
+}
+
+.login-title {
+    font-size: 115px;
+    color: #005baa; /* LOGIN title color */
+    margin-bottom: -7px;
+}
+
+.worker-login {
+    font-size: 35px;
+    color: #196bb2; /* Worker Login text color */
+    margin-bottom: 30px;
+}
+
+.login-input {
+    width: 90%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #012f57; /* Background color for ID input */
+    color: white; /* Text color for contrast */
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    height: 50px;
+}
+
+.login-button {
+    width: 65%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #005baa; /* Button color */
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 10px 8px rgba(0,0,0,0.5);
+}
+
+.login-button:hover {
+    background-color: #004f9e; /* Slightly darker color for hover effect */
+}
+
+.error-text {
+    color: red;
+    font-size: 14px;
+}
+
+.login-image {
+    left: 0px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    zoom :2.75;
+}
+
+.login-image img {
+    max-width: 300px;
+    height: auto;
+    /*  border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+}
+/* Header.css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    margin-bottom: 20px;
+    padding: 10px;
+
+    color: white;
+
+}
+
+.profile {
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.profile img {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 60px;
+    height: 60px;
+}
+
+.profile .name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.logout {
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: center;
+    background-color:white;
+    color: black;
+    border-radius: 30px;
+    min-width: 8%;
+}
+
+/*                          Ticket Display                       */
+
+.ticket-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to right, #FEC409,#F4D72A );
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    height: 95%;
+    text-align: center;
+    color: var(--font-primary-color);
+    /*font-weight: 700;*/
+    /*font-family: 'Roboto', sans-serif;*/
+}
+.ticket-display h1 {
+    font-weight: 700;
+    margin: 0;
+    font-size:4em;
+
+}
+
+.ticket-display h3 {
+    /*margin-bottom: 10px;*/
+    font-size: 24px;
+    color: black;
+    margin-top: 0;
+    font-weight: 800;
+
+}
+
+
+
+.ticket-display .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.ticket-display .buttons button:first-child {
+    /* Add your styles here */
+    color: var(--primary-color);
+}
+
+.ticket-display button {
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 80%;
+    font-weight: 1000;
+    font-size: 1.3em;
+}
+
+.ticket-display button:hover {
+    background-color: #004f9e;
+    color: white;
+    transition-duration: 0.3s;
+}
+
+/* info */
+.info {
+    /*position: relative;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+}
+/* Customor */
+.customer{
+    background-color: #E8E8E8;
+    padding: 10px;
+    border: 5px solid var(--font-primary-color);
+    border-radius: 20px;
+    width: 45%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.customer h3{
+    font-size: 2.5em;
+    color: var(--font-primary-color);
+    font-weight: 800;
+
+    margin: 0;
+}
+.customer p{
+    margin: 0;
+}
+.customerInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 10px;
+}
+.customerInfo p{
+    margin: 5px;
+    background: linear-gradient(to right, var(--primary-color), #FEF444);
+    width: 100%;
+    height: 50px;
+    font-weight: 700;
+    font-size: 1.3em;
+    border-radius: 35px;
+    color: var(--font-primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+

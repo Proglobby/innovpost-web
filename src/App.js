@@ -6,11 +6,13 @@ import { useState, useEffect } from "react";
 //import { fetchTicketAndUserDetails } from "./firebase-utils"; // Import the Firebase utility function
 import { ref, get, child ,update,push} from 'firebase/database';
 import { database } from './firebaseConfig';
+import Header from "./Header";
 
 
 
 function App() {
     const [workerId, setWorkerId] = useState(null);
+    const [workerName, setWorkerName] = useState(null);
     const [ticketNumber, setTicketNumber] = useState(1);
     const [customers, setCustomers] = useState([]);
     const [agency,setAgency]=useState({})
@@ -36,8 +38,6 @@ function App() {
             await update(newFeedbackRef, { workerName: workerId });
         }
     }
-
-
 
     const handlePrevious = () => {
         setTicketNumber((prev) => Math.max(prev - 1, 1));
@@ -91,18 +91,22 @@ function App() {
         fetchUsers();
     }, []);
     if (!workerId) {
-        return <WorkerLogin onLogin={setWorkerId} />;
+        return <WorkerLogin onLogin={setWorkerId} onWorkerName={setWorkerName}/>;
     }
 
     return (
-        <div>
-            <h1>Post Office System</h1>
-            <TicketDisplay
-                ticketNumber={ticketNumber}
-                onNext={handleNext}
-                onPrevious={handlePrevious}
-            />
-            <CustomerInfo customer={currentCustomer} />
+        <div className={"App"} >
+            <Header workerId={workerId} workerName={workerName}/>
+            <h1>POST OFFICE SYSTEM</h1>
+            <div className={"info"}>
+                <CustomerInfo customer={currentCustomer} />
+                <TicketDisplay
+                    ticketNumber={ticketNumber}
+                    onNext={handleNext}
+                    onPrevious={handlePrevious}
+                />
+
+            </div>
         </div>
     );
 }
