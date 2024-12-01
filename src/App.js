@@ -17,9 +17,23 @@ function App() {
     const [customers, setCustomers] = useState([]);
     const [agency,setAgency]=useState({})
 
+    function onLogout(){
+        setWorkerId(null)
+        const dbRef = ref(database, 'agencies/21004');
+        update(dbRef, { total: 0, index: 0 })
+            .then(() => {
+                console.log("Total set to 0 successfully");
+            })
+            .catch((error) => {
+                console.error("Error updating total:", error);
+            });
 
+    }
     const handleNext = async () => {
-        const newTicketNumber = Math.min(ticketNumber + 1, agency.total);
+        let newTicketNumber = ticketNumber + 1;
+        if (newTicketNumber > agency.total) {
+            newTicketNumber = agency.total;
+        }
         setTicketNumber(newTicketNumber);
 
         try {
@@ -91,12 +105,12 @@ function App() {
         fetchUsers();
     }, []);
     if (!workerId) {
-        return <WorkerLogin onLogin={setWorkerId} onWorkerName={setWorkerName}/>;
+        return <WorkerLogin onLogin={setWorkerId} onWorkerName={setWorkerName} />;
     }
 
     return (
         <div className={"App"} >
-            <Header workerId={workerId} workerName={workerName}/>
+            <Header workerId={workerId} workerName={workerName} onLogout={onLogout}/>
             <h1>POST OFFICE SYSTEM</h1>
             <div className={"info"}>
                 <CustomerInfo customer={currentCustomer} />
